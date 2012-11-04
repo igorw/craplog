@@ -1,0 +1,8 @@
+{
+    "require": {
+        "doctrine/couchdb": "dev-master"
+    },
+    "autoload": {
+        "psr-0": { "Igorw\\Painblog": "src" }
+    }
+}
