@@ -11,8 +11,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
 
     if ($authenticator->authenticate($name, $password)) {
         $user = $userRepo->findByName($name);
-        session_start();
-        $_SESSION['user'] = $user;
+        $session->set('user', $user);
         header('Location: index.php');
         return;
     }

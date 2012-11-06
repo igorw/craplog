@@ -2,5 +2,5 @@
 
 require __DIR__.'/bootstrap.php';
 
-setcookie(session_name(), '', 0);
+$session->destroy();
 header('Location: index.php');
