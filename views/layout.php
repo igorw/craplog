@@ -7,7 +7,11 @@
 
 <?= $this->getBlock('body') ?>
 
-<?php if (!$user): ?>
+<?php if ($user): ?>
+<p>
+    <a href="logout.php">Logout</a>
+</p>
+<?php else: ?>
 <p>
     <a href="login.php">Login</a>
 </p>
