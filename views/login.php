@@ -3,11 +3,11 @@
 <?php $this->block('body') ?>
     <h1>Login</h1>
 
-    <? if ($name): ?>
+    <?php if ($name): ?>
         <p class="error">
             You must have accidentally your password, try again.
         </p>
-    <? endif ?>
+    <?php endif ?>
 
     <form method="POST" action="login.php">
         <ul>
