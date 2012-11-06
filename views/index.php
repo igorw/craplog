@@ -1,5 +1,12 @@
-<?php
+<h1>Painblog</h1>
 
-foreach ($posts as $post) {
-    var_dump($post);
-}
+<ul>
+<?php foreach ($posts as $post): ?>
+    <li>
+        <?= date('M d', strtotime($post['date'])) ?>
+        <a href="post.php?id=<?= urlencode($post['id']) ?>">
+            <?= $this->escape($post['title']) ?>
+        </a>
+    </li>
+<?php endforeach; ?>
+</ul>

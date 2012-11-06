@@ -24,6 +24,11 @@ class View
         include $this->basePath.'/'.$name.'.php';
     }
 
+    public function escape($value)
+    {
+        return htmlspecialchars($value);
+    }
+
     public static function create($options)
     {
         return new static($options['view.path']);

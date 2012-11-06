@@ -1,10 +1,12 @@
 [
     {
+        "id": "hello-world",
         "title": "Hello World",
         "date": "2012-11-06",
         "body": "Hello! This is a new blog that may inflict pain."
     },
     {
+        "id": "favorite-website",
         "title": "My favorite website on the internets",
         "date": "2012-11-07",
         "body": "My most favourite website on all of the internets is <a href=\"http://example.org\">example.org</a>"
