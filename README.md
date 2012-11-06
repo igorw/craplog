@@ -18,3 +18,7 @@ entertainment, but also to make sure the examples from the documentation
 ## But where are the tests?
 
 Nobody needs unit tests, they are overrated.
+
+## But where is the CSS?
+
+You need to start using a real browser like lynx.
