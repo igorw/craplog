@@ -1,5 +1,9 @@
-<h1><?= $this->escape($post['title']) ?></h1>
+<?php $this->layout('layout') ?>
 
-<p>
-    <?= $post['body'] ?>
-</p>
+<?php $this->block('body') ?>
+    <h1><?= $this->escape($post['title']) ?></h1>
+
+    <p>
+        <?= $post['body'] ?>
+    </p>
+<?php $this->end() ?>
