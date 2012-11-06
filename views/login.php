@@ -11,7 +11,7 @@
 
     <form method="POST" action="login.php">
         <ul>
-            <li><label>Name: <input name="name" value="<?= $name ?>"></label></li>
+            <li><label>Name: <input name="name" value="<?= $this->escape($name) ?>"></label></li>
             <li><label>Password: <input name="password" type="password"></label></li>
             <li><input type="submit"></li>
         </ul>

@@ -7,6 +7,7 @@ use Igorw\Craplog\Security\PlaintextAuthenticator;
 use Igorw\Craplog\Security\Authorizer;
 use Igorw\Craplog\Session;
 use Igorw\Craplog\Storage\JsonStorage;
+use Igorw\Craplog\Storage\PostPersister;
 use Igorw\Craplog\Storage\PostRepository;
 use Igorw\Craplog\Storage\UserRepository;
 use Igorw\Craplog\View;
@@ -16,6 +17,7 @@ $dbConfig = $configLoader->load('database');
 
 $postStorage = new JsonStorage($dbConfig['posts']);
 $postRepo = new PostRepository($postStorage);
+$postPersister = new PostPersister($postStorage);
 
 $userStorage = new JsonStorage($dbConfig['users']);
 $userRepo = new UserRepository($userStorage);

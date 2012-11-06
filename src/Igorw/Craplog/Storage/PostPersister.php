@@ -17,4 +17,23 @@ class PostPersister
         $posts[] = $post;
         $this->storage->store($posts);
     }
+
+    public function update(array $oldPost, array $newPost)
+    {
+        $found = false;
+
+        $posts = $this->storage->load();
+        foreach ($posts as $i => $post) {
+            if ($oldPost === $post) {
+                $posts[$i] = $newPost;
+                $found = true;
+            }
+        }
+
+        if (!$found) {
+            throw new PostNotFoundException();
+        }
+
+        $this->storage->store($posts);
+    }
 }
