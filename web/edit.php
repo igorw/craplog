@@ -13,6 +13,8 @@ if (!$user) {
 $authorizer->ensureHasRole($user, 'admin');
 
 if ('POST' === $_SERVER['REQUEST_METHOD']) {
+    $csrfChecker->ensureIsValid($_POST['csrfToken']);
+
     $newPost = array_merge($post, array(
         'title' => $_POST['title'],
         'body'  => $_POST['body'],
@@ -26,4 +28,5 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
 echo $view->render('edit', [
     'post'          => $post,
     'user'          => $user,
+    'csrfToken'     => $csrfChecker->createToken(),
 ]);

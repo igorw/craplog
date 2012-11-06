@@ -4,6 +4,11 @@ namespace Igorw\Craplog;
 
 class Session
 {
+    public function id()
+    {
+        return session_id();
+    }
+
     public function init()
     {
         if (isset($_COOKIE[session_name()])) {

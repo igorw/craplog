@@ -7,9 +7,12 @@
                 Title: <input name="title" value="<?= $this->escape($post['title']) ?>">
             </label></li>
             <li><label>
-                Body: <textarea name="body"><?= $this->escape($post['title']) ?></textarea>
+                Body: <textarea name="body"><?= $this->escape($post['body']) ?></textarea>
             </label></li>
-            <li><input type="submit"></li>
+            <li>
+                <input type="hidden" name="csrfToken" value="<?= $this->escape($csrfToken) ?>">
+                <input type="submit">
+            </li>
         </ul>
     </form>
 <?php $this->end() ?>

@@ -3,8 +3,9 @@
 require __DIR__.'/../vendor/autoload.php';
 
 use Igorw\Craplog\ConfigLoader;
-use Igorw\Craplog\Security\PlaintextAuthenticator;
 use Igorw\Craplog\Security\Authorizer;
+use Igorw\Craplog\Security\PlaintextAuthenticator;
+use Igorw\Craplog\Security\SessionCsrfChecker;
 use Igorw\Craplog\Session;
 use Igorw\Craplog\Storage\JsonStorage;
 use Igorw\Craplog\Storage\PostPersister;
@@ -29,3 +30,5 @@ $view = View::create($configLoader->load('view'));
 $session = new Session();
 $session->init();
 $user = $session->get('user');
+
+$csrfChecker = new SessionCsrfChecker($session);
