@@ -10,17 +10,5 @@
         "title": "My favorite website on the internets",
         "date": "2012-11-07",
         "body": "My most favourite website on all of the internets is <a href=\"http://example.org\">example.org</a>."
-    },
-    {
-        "id": "new-shoes",
-        "title": "I bought some new shoes",
-        "date": "2012-11-07",
-        "body": "Yes, hell yes I did."
-    },
-    {
-        "id": "try-again",
-        "title": "Let's try again",
-        "date": "2012-11-07",
-        "body": "Hell yeah let's try"
     }
 ]

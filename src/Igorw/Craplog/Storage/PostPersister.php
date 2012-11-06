@@ -20,20 +20,27 @@ class PostPersister
 
     public function update(array $oldPost, array $newPost)
     {
-        $found = false;
-
         $posts = $this->storage->load();
-        foreach ($posts as $i => $post) {
-            if ($oldPost === $post) {
-                $posts[$i] = $newPost;
-                $found = true;
-            }
-        }
+        $key = array_search($oldPost, $posts, true);
 
-        if (!$found) {
+        if (false === $key) {
             throw new PostNotFoundException();
         }
 
+        $posts[$key] = $newPost;
+        $this->storage->store($posts);
+    }
+
+    public function delete(array $post)
+    {
+        $posts = $this->storage->load();
+        $key = array_search($post, $posts, true);
+
+        if (false === $key) {
+            throw new PostNotFoundException();
+        }
+
+        unset($posts[$key]);
         $this->storage->store($posts);
     }
 }
