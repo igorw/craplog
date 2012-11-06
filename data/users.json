@@ -1,0 +1,7 @@
+[
+    {
+        "name": "igorw",
+        "password": "foobar",
+        "roles": ["admin"]
+    }
+]

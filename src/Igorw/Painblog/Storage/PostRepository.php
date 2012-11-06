@@ -19,6 +19,18 @@ class PostRepository
         return $posts;
     }
 
+    public function find($id)
+    {
+        $posts = $this->storage->load();
+        foreach ($posts as $post) {
+            if ($id === $post['id']) {
+                return $post;
+            }
+        }
+
+        throw new PostNotFoundException();
+    }
+
     public function comparePostsByDateDesc($postA, $postB)
     {
         return strcmp($postB['date'], $postA['date']);

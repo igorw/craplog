@@ -1,3 +1,4 @@
 {
-    "db.file": "%root_path%/data/painblog.json"
+    "posts": "%root_path%/data/posts.json",
+    "users": "%root_path%/data/users.json"
 }

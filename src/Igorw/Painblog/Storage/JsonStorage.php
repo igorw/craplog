@@ -22,9 +22,4 @@ class JsonStorage
         $json = json_encode($data);
         file_put_contents($this->file, $json);
     }
-
-    public static function create($options)
-    {
-        return new static($options['db.file']);
-    }
 }
