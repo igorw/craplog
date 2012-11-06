@@ -18,7 +18,8 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
 }
 
 echo $view->render('login', [
-    'user'      => $user,
-    'name'      => $name,
-    'password'  => $password,
+    'user'          => $user,
+    'name'          => $name,
+    'password'      => $password,
+    'authorizer'    => $authorizer,
 ]);

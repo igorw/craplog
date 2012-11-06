@@ -7,6 +7,6 @@ $post = $postRepo->find($id);
 
 echo $view->render('post', [
     'post'          => $post,
-    'authorizer'    => $authorizer,
     'user'          => $user,
+    'authorizer'    => $authorizer,
 ]);

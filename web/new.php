@@ -2,9 +2,6 @@
 
 require __DIR__.'/bootstrap.php';
 
-$id = (string) $_GET['id'];
-$post = $postRepo->find($id);
-
 if (!$user) {
     header('Location: login.php');
     return;
@@ -15,18 +12,19 @@ $authorizer->ensureHasRole($user, 'admin');
 if ('POST' === $_SERVER['REQUEST_METHOD']) {
     $csrfChecker->ensureIsValid($_POST['csrfToken']);
 
-    $newPost = array_merge($post, array(
+    $post = array(
+        'id'    => $_POST['id'],
         'title' => $_POST['title'],
+        'date'  => date('Y-m-d', $_SERVER['REQUEST_TIME']),
         'body'  => $_POST['body'],
-    ));
-    $postPersister->update($post, $newPost);
+    );
+    $postPersister->save($post);
 
-    header('Location: post.php?id='.$id);
+    header('Location: post.php?id='.$post['id']);
     return;
 }
 
-echo $view->render('edit', [
-    'post'          => $post,
+echo $view->render('new', [
     'user'          => $user,
     'csrfToken'     => $csrfChecker->createToken(),
     'authorizer'    => $authorizer,

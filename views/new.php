@@ -1,15 +1,18 @@
 <?php $this->layout('layout') ?>
 
 <?php $this->block('body') ?>
-    <h1>Edit post</h1>
+    <h1>Create new post</h1>
 
-    <form method="POST" action="edit.php?id=<?= urlencode($post['id']) ?>">
+    <form method="POST" action="new.php">
         <ul>
             <li><label>
-                Title: <input name="title" value="<?= $this->escape($post['title']) ?>">
+                Id: <input name="id">
             </label></li>
             <li><label>
-                Body: <textarea name="body"><?= $this->escape($post['body']) ?></textarea>
+                Title: <input name="title">
+            </label></li>
+            <li><label>
+                Body: <textarea name="body"></textarea>
             </label></li>
             <li>
                 <input type="hidden" name="csrfToken" value="<?= $this->escape($csrfToken) ?>">
