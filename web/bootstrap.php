@@ -2,10 +2,10 @@
 
 require __DIR__.'/../vendor/autoload.php';
 
-use Doctrine\CouchDB\CouchDBClient;
 use Igorw\Painblog\ConfigLoader;
-use Igorw\Painblog\PostRepository;
+use Igorw\Painblog\Storage\JsonStorage;
+use Igorw\Painblog\Storage\PostRepository;
 
-$configLoader = new ConfigLoader(__DIR__.'/../config');
-$couchClient = CouchDBClient::create($configLoader->load('database'));
-$postRepository = new PostRepository($couchClient);
+$configLoader = new ConfigLoader(__DIR__.'/../config', ['root_path' => __DIR__.'/..']);
+$jsonStorage = JsonStorage::create($configLoader->load('database'));
+$postRepository = new PostRepository($jsonStorage);
