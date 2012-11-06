@@ -2,6 +2,10 @@
 
 require __DIR__.'/bootstrap.php';
 
-$posts = $postRepository->findAll();
+$posts = $postRepo->findAll();
 
-echo $view->render('index', ['posts' => $posts]);
+echo $view->render('index', [
+    'posts'         => $posts,
+    'authorizer'    => $authorizer,
+    'user'          => $user,
+]);

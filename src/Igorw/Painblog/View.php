@@ -36,10 +36,10 @@ class View
         $this->displayView($this->layout, $vars);
     }
 
-    private function displayView($name, $vars)
+    private function displayView($_name, $_vars)
     {
-        extract($vars);
-        include $this->basePath.'/'.$name.'.php';
+        extract($_vars);
+        include $this->basePath.'/'.$_name.'.php';
     }
 
     public function layout($name)

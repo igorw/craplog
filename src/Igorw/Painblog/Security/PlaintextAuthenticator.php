@@ -2,21 +2,22 @@
 
 namespace Igorw\Painblog\Security;
 
-use Igorw\Painblog\Storage\JsonStorage;
+use Igorw\Painblog\Storage\UserRepository;
+use Igorw\Painblog\Storage\UserNotFoundException;
 
 class PlaintextAuthenticator
 {
-    private $storage;
+    private $userRepo;
 
-    public function __construct(JsonStorage $storage)
+    public function __construct(UserRepository $userRepo)
     {
-        $this->storage = $storage;
+        $this->userRepo = $userRepo;
     }
 
     public function authenticate($name, $password)
     {
         try {
-            $user = $this->findUser($name);
+            $user = $this->userRepo->findByName($name);
             return $this->passwordsMatch($password, $user);
         } catch (UserNotFoundException $e) {
             return false;
@@ -26,17 +27,5 @@ class PlaintextAuthenticator
     public function passwordsMatch($password, $user)
     {
         return $password === $user['password'];
-    }
-
-    public function findUser($name)
-    {
-        $users = $this->storage->load();
-        foreach ($users as $user) {
-            if ($name === $user['name']) {
-                return $user;
-            }
-        }
-
-        throw new UserNotFoundException();
     }
 }
