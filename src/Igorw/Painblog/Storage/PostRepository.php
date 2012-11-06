@@ -14,13 +14,13 @@ class PostRepository
     public function findAll()
     {
         $posts = $this->storage->load();
-        usort($posts, [$this, 'comparePostsByDate']);
+        usort($posts, [$this, 'comparePostsByDateDesc']);
 
         return $posts;
     }
 
-    public function comparePostsByDate($postA, $postB)
+    public function comparePostsByDateDesc($postA, $postB)
     {
-        return $postA['date'] < $postB['date'];
+        return strcmp($postB['date'], $postA['date']);
     }
 }
