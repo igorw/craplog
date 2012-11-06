@@ -19,7 +19,8 @@ class JsonStorage
 
     public function store($data)
     {
-        $json = json_encode($data);
+        $flags = JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE;
+        $json = json_encode($data, $flags);
         file_put_contents($this->file, $json);
     }
 }
