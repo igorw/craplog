@@ -1,6 +1,6 @@
 <?php
 
-namespace Igorw\Painblog\Security;
+namespace Igorw\Craplog\Security;
 
 class NotAuthorizedException extends \Exception
 {

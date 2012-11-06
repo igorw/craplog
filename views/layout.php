@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Painblog</title>
+    <title>Craplog</title>
 </head>
 <body>
 

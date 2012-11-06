@@ -1,6 +1,6 @@
 <?php
 
-namespace Igorw\Painblog;
+namespace Igorw\Craplog;
 
 class Session
 {

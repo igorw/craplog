@@ -1,9 +1,9 @@
 <?php
 
-namespace Igorw\Painblog\Security;
+namespace Igorw\Craplog\Security;
 
-use Igorw\Painblog\Storage\UserRepository;
-use Igorw\Painblog\Storage\UserNotFoundException;
+use Igorw\Craplog\Storage\UserRepository;
+use Igorw\Craplog\Storage\UserNotFoundException;
 
 class PlaintextAuthenticator
 {

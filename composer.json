@@ -2,6 +2,6 @@
     "require": {
     },
     "autoload": {
-        "psr-0": { "Igorw\\Painblog": "src" }
+        "psr-0": { "Igorw\\Craplog": "src" }
     }
 }

@@ -1,7 +1,7 @@
 <?php $this->layout('layout') ?>
 
 <?php $this->block('body') ?>
-    <h1>Painblog</h1>
+    <h1>Craplog</h1>
 
     <ul>
     <?php foreach ($posts as $post): ?>

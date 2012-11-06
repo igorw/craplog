@@ -1,6 +1,6 @@
 <?php
 
-namespace Igorw\Painblog\Storage;
+namespace Igorw\Craplog\Storage;
 
 class PostPersister
 {
