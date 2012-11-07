@@ -32,7 +32,5 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
 }
 
 echo $view->render('new', [
-    'user'          => $user,
     'csrfToken'     => $csrfChecker->createToken(),
-    'authorizer'    => $authorizer,
 ]);

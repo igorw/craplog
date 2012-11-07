@@ -21,5 +21,4 @@ echo $view->render('login', [
     'user'          => $user,
     'name'          => $name,
     'password'      => $password,
-    'authorizer'    => $authorizer,
 ]);

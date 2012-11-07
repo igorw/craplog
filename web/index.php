@@ -6,6 +6,4 @@ $posts = $postRepo->findAll();
 
 echo $view->render('index', [
     'posts'         => $posts,
-    'user'          => $user,
-    'authorizer'    => $authorizer,
 ]);

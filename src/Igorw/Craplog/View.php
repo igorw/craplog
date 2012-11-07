@@ -5,16 +5,18 @@ namespace Igorw\Craplog;
 class View
 {
     private $basePath;
+    private $globals;
     private $layout;
     private $blocks = [];
     private $blockData = [];
 
-    public function __construct($basePath)
+    public function __construct($basePath, $globals = [])
     {
         $this->basePath = $basePath;
+        $this->globals = $globals;
     }
 
-    public function render($name, $vars = array())
+    public function render($name, $vars = [])
     {
         ob_start();
         $this->display($name, $vars);
@@ -22,7 +24,7 @@ class View
         return ltrim($data);
     }
 
-    public function display($name, $vars = array())
+    public function display($name, $vars = [])
     {
         $this->displayView($name, $vars);
 
@@ -38,6 +40,7 @@ class View
 
     private function displayView($_name, $_vars)
     {
+        $_vars = array_merge($this->globals, $_vars);
         extract($_vars);
         include $this->basePath.'/'.$_name.'.php';
     }
@@ -71,8 +74,8 @@ class View
         return htmlspecialchars($value);
     }
 
-    public static function create($options)
+    public static function create($options, array $globals = [])
     {
-        return new static($options['view.path']);
+        return new static($options['view.path'], $globals);
     }
 }

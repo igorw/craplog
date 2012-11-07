@@ -11,8 +11,11 @@ use Igorw\Craplog\Session;
 use Igorw\Craplog\Storage\JsonStorage;
 use Igorw\Craplog\Storage\PostPersister;
 use Igorw\Craplog\Storage\PostRepository;
+use Igorw\Craplog\Storage\PostNotFoundException;
 use Igorw\Craplog\Storage\UserRepository;
 use Igorw\Craplog\View;
+
+$debug = true;
 
 $configLoader = new ConfigLoader(__DIR__.'/../config', ['root_path' => __DIR__.'/..']);
 $dbConfig = $configLoader->load('database');
@@ -26,18 +29,40 @@ $userRepo = new UserRepository($userStorage);
 $authenticator = new PlaintextAuthenticator($userRepo);
 $authorizer = new Authorizer();
 
-$view = View::create($configLoader->load('view'));
+$emitter = new EventEmitter();
 
 $session = new Session();
 $session->init();
 $user = $session->get('user');
 
-$csrfChecker = new SessionCsrfChecker($session);
+$globals = [
+    'authorizer'    => $authorizer,
+    'emitter'       => $emitter,
+    'user'          => $user,
+];
+$view = View::create($configLoader->load('view'), $globals);
 
-$emitter = new EventEmitter();
+$csrfChecker = new SessionCsrfChecker($session);
 
 $pluginClasses = $configLoader->load('plugins');
 foreach ($pluginClasses as $pluginClass) {
     $plugin = new $pluginClass();
     $plugin->attachEvents($emitter);
 }
+
+set_exception_handler(function ($e) use ($view, $debug) {
+    if ($e instanceof PostNotFoundException) {
+        header('HTTP/1.1 404 Not Found');
+        $error = 'The post you wanted could not be found.';
+        $view->display('error', ['error' => $error]);
+        return;
+    }
+
+    if ($debug) {
+        throw $e;
+    }
+
+    header('HTTP/1.1 500 Internal Server Error');
+    $error = $e->getMessage() ?: 'We had an error of type: '.get_class($e).'.';
+    $view->display('error', ['error' => $error]);
+});

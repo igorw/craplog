@@ -27,7 +27,5 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
 
 echo $view->render('edit', [
     'post'          => $post,
-    'user'          => $user,
     'csrfToken'     => $csrfChecker->createToken(),
-    'authorizer'    => $authorizer,
 ]);

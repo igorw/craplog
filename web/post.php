@@ -7,8 +7,5 @@ $post = $postRepo->find($id);
 
 echo $view->render('post', [
     'post'          => $post,
-    'user'          => $user,
     'csrfToken'     => $csrfChecker->createToken(),
-    'authorizer'    => $authorizer,
-    'emitter'       => $emitter,
 ]);
