@@ -2,6 +2,7 @@
 
 require __DIR__.'/../vendor/autoload.php';
 
+use Evenement\EventEmitter;
 use Igorw\Craplog\ConfigLoader;
 use Igorw\Craplog\Security\Authorizer;
 use Igorw\Craplog\Security\PlaintextAuthenticator;
@@ -32,3 +33,11 @@ $session->init();
 $user = $session->get('user');
 
 $csrfChecker = new SessionCsrfChecker($session);
+
+$emitter = new EventEmitter();
+
+$pluginClasses = $configLoader->load('plugins');
+foreach ($pluginClasses as $pluginClass) {
+    $plugin = new $pluginClass();
+    $plugin->attachEvents($emitter);
+}
