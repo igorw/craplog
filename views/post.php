@@ -1,3 +1,17 @@
+<?php
+
+use Igorw\Craplog\Event\PostEvent;
+
+$renderPostBody = function ($post) use ($emitter) {
+    $event = new PostEvent($post);
+    $emitter->emit('post.render', array($event));
+    $post = $event->post;
+
+    return $post['body'];
+};
+
+?>
+
 <?php $this->layout('layout') ?>
 
 <?php $this->block('body') ?>
@@ -14,6 +28,6 @@
     <h1><?= $this->escape($post['title']) ?></h1>
 
     <p>
-        <?= $post['body'] ?>
+        <?= $renderPostBody($post) ?>
     </p>
 <?php $this->end() ?>

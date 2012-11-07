@@ -1,3 +1,4 @@
 [
-    "Igorw\\Craplog\\Plugin\\FooPlugin"
+    "Igorw\\Craplog\\Plugin\\FooPlugin",
+    "Igorw\\Craplog\\Plugin\\MarkdownPlugin"
 ]

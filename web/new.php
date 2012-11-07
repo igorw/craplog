@@ -1,5 +1,7 @@
 <?php
 
+use Igorw\Craplog\Event\PostEvent;
+
 require __DIR__.'/bootstrap.php';
 
 if (!$user) {
@@ -18,6 +20,11 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
         'date'  => date('Y-m-d', $_SERVER['REQUEST_TIME']),
         'body'  => $_POST['body'],
     );
+
+    $event = new PostEvent($post);
+    $emitter->emit('post.created', array($event));
+    $post = $event->post;
+
     $postPersister->save($post);
 
     header('Location: post.php?id='.$post['id']);

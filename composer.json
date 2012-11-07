@@ -1,6 +1,7 @@
 {
     "require": {
-        "evenement/evenement": "1.0.*"
+        "evenement/evenement": "1.0.*",
+        "dflydev/markdown": "1.0.*"
     },
     "autoload": {
         "psr-0": { "Igorw\\Craplog": "src" }

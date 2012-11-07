@@ -10,4 +10,5 @@ echo $view->render('post', [
     'user'          => $user,
     'csrfToken'     => $csrfChecker->createToken(),
     'authorizer'    => $authorizer,
+    'emitter'       => $emitter,
 ]);
